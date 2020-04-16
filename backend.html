@@ -3,4 +3,13 @@
   <body>
 
   <script src="js/backend.js"></script></body>
+  <script>
+    const worker = Worker('./js/backend.js');
+
+    worker.addEventListener('message', (event) => {
+      window.flutter_inappwebview.callHandler('postMessage', event.data);
+    });
+
+    window.JsBridgePostMessage = worker.postMessage;
+  </script>
 </html>
