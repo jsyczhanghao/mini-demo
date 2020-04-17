@@ -107,17 +107,15 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support/index.js");
+/* WEBPACK VAR INJECTION */(function(global) {let _;
 
-
-let _;
-
-_support__WEBPACK_IMPORTED_MODULE_0__["default"].getApp = () => _;
+global.getApp = () => _;
 
 /* harmony default export */ __webpack_exports__["default"] = ((app) => {
   _ = app;
   _.onLaunch && _.onLaunch();
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -482,10 +480,8 @@ Object(_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"])(app_app__WEBPACK_IMPO
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/messager.js");
-/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support/index.js");
 
-
-/* harmony default export */ __webpack_exports__["default"] = (new _messager__WEBPACK_IMPORTED_MODULE_0__["default"](_support__WEBPACK_IMPORTED_MODULE_1__["self"]));
+/* harmony default export */ __webpack_exports__["default"] = (new _messager__WEBPACK_IMPORTED_MODULE_0__["default"](self));
 
 /***/ }),
 
@@ -551,29 +547,21 @@ class Query {
 /*!********************************************!*\
   !*** ../lib/mini/backend/support/index.js ***!
   \********************************************/
-/*! exports provided: self, global, mini */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "global", function() { return _; });
-/* harmony import */ var _self__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./self */ "../lib/mini/backend/support/self.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "self", function() { return _self__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _self__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./self */ "../lib/mini/backend/support/self.js");
+/* harmony import */ var _self__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_self__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _mini__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mini */ "../lib/mini/backend/support/mini/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mini", function() { return _mini__WEBPACK_IMPORTED_MODULE_1__["default"]; });
 
 
 
-
-let _;
-
-(function() {
-  _ = typeof global == 'undefined' ? this : global;
-  _.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
+(() => {
+  undefined.global = typeof global == 'undefined' ? undefined : global;
+  undefined.global.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
 })();
-
-
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -647,15 +635,13 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ../lib/mini/backend/support/self.js ***!
   \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 let f;
 
 if (typeof self == 'undefined') {
-  (function() {
+  (() => {
     this.self = {
       addEventListener(type, fn) {
         typeo == 'message' && (f = fn);
@@ -677,8 +663,6 @@ if (typeof self == 'undefined') {
     };
   })();
 }
-
-/* harmony default export */ __webpack_exports__["default"] = (self);
 
 /***/ }),
 
