@@ -417,6 +417,82 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../lib/mini/backend/global/index.js":
+/*!*******************************************!*\
+  !*** ../lib/mini/backend/global/index.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _navigator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigator */ "../lib/mini/backend/global/navigator.js");
+/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toast */ "../lib/mini/backend/global/toast.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (global.mini = {
+  navigator: _navigator__WEBPACK_IMPORTED_MODULE_0__["default"],
+  toast: _toast__WEBPACK_IMPORTED_MODULE_1__["default"]
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../lib/mini/backend/global/navigator.js":
+/*!***********************************************!*\
+  !*** ../lib/mini/backend/global/navigator.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/backend/messager.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  push(url) {
+    _messager__WEBPACK_IMPORTED_MODULE_0__["default"].send('API_CALL', {
+      method: 'navigator.push',
+      arguments: {
+        url
+      }
+    });
+  },
+
+  back() {
+
+  }
+});
+
+/***/ }),
+
+/***/ "../lib/mini/backend/global/toast.js":
+/*!*******************************************!*\
+  !*** ../lib/mini/backend/global/toast.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/backend/messager.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  show(message, duration = 1000) {
+    _messager__WEBPACK_IMPORTED_MODULE_0__["default"].send('API_CALL', {
+      method: 'toast.show',
+      arguments: {
+        message, duration
+      }
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "../lib/mini/backend/index.js":
 /*!************************************!*\
   !*** ../lib/mini/backend/index.js ***!
@@ -426,12 +502,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support/index.js");
-/* harmony import */ var _class__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./class */ "../lib/mini/backend/class.js");
-/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bootstrap */ "../lib/mini/backend/bootstrap.js");
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components */ "../lib/mini/backend/components/index.js");
-/* harmony import */ var app_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! app/app */ "./app.js");
+/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support.js");
+/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_support__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global */ "../lib/mini/backend/global/index.js");
+/* harmony import */ var _class__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./class */ "../lib/mini/backend/class.js");
+/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./bootstrap */ "../lib/mini/backend/bootstrap.js");
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components */ "../lib/mini/backend/components/index.js");
+/* harmony import */ var app_app__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! app/app */ "./app.js");
+
 
 
 
@@ -441,16 +520,16 @@ __webpack_require__.r(__webpack_exports__);
 
 let currentPageOptions;
 
-Object(_components__WEBPACK_IMPORTED_MODULE_4__["install"])(_class__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Object(_components__WEBPACK_IMPORTED_MODULE_5__["install"])(_class__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
-_messager__WEBPACK_IMPORTED_MODULE_2__["default"]
+_messager__WEBPACK_IMPORTED_MODULE_3__["default"]
   .recevie('PAGE_LOADED', (data, callback) => {
-    callback(currentPageOptions = app_app__WEBPACK_IMPORTED_MODULE_5__["Pages"][data]);
+    callback(currentPageOptions = app_app__WEBPACK_IMPORTED_MODULE_6__["Pages"][data]);
   })
   .recevie('CLIENT_CREATED', (data) => {
-    let context = data.context ? _class__WEBPACK_IMPORTED_MODULE_1__["default"].instance(data.context) : null;
+    let context = data.context ? _class__WEBPACK_IMPORTED_MODULE_2__["default"].instance(data.context) : null;
     let componentOptions = !context ? currentPageOptions : context.$components[data.component];
-    new _class__WEBPACK_IMPORTED_MODULE_1__["default"](componentOptions, {
+    new _class__WEBPACK_IMPORTED_MODULE_2__["default"](componentOptions, {
       context,
       props: data.props,
       componentName: data.component,
@@ -458,15 +537,15 @@ _messager__WEBPACK_IMPORTED_MODULE_2__["default"]
     }).$mount();
   })
   .recevie('CLIENT_INVOKE_UPDATE', (data) => {
-    let instance = _class__WEBPACK_IMPORTED_MODULE_1__["default"].instance(data.id);
+    let instance = _class__WEBPACK_IMPORTED_MODULE_2__["default"].instance(data.id);
     instance.$setPropsData(data.props);
     instance.$update();
   })
   .recevie('CLIENT_INVOKE', (data) => {
-    _class__WEBPACK_IMPORTED_MODULE_1__["default"].instance(data.id).$invoke(data.method, ...data.args);
+    _class__WEBPACK_IMPORTED_MODULE_2__["default"].instance(data.id).$invoke(data.method, ...data.args);
   });
 
-Object(_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"])(app_app__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Object(_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"])(app_app__WEBPACK_IMPORTED_MODULE_6__["default"]);
 
 /***/ }),
 
@@ -543,95 +622,10 @@ class Query {
 
 /***/ }),
 
-/***/ "../lib/mini/backend/support/index.js":
-/*!********************************************!*\
-  !*** ../lib/mini/backend/support/index.js ***!
-  \********************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _self__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./self */ "../lib/mini/backend/support/self.js");
-/* harmony import */ var _self__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_self__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mini__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mini */ "../lib/mini/backend/support/mini/index.js");
-
-
-
-global.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "../lib/mini/backend/support/mini/index.js":
-/*!*************************************************!*\
-  !*** ../lib/mini/backend/support/mini/index.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _navigator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigator */ "../lib/mini/backend/support/mini/navigator.js");
-/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toast */ "../lib/mini/backend/support/mini/toast.js");
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  navigator: _navigator__WEBPACK_IMPORTED_MODULE_0__["default"],
-  toast: _toast__WEBPACK_IMPORTED_MODULE_1__["default"]
-});
-
-/***/ }),
-
-/***/ "../lib/mini/backend/support/mini/navigator.js":
-/*!*****************************************************!*\
-  !*** ../lib/mini/backend/support/mini/navigator.js ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  push(url) {
-    console.log('call navigator push ' + url);
-  },
-
-  back() {
-
-  }
-});
-
-/***/ }),
-
-/***/ "../lib/mini/backend/support/mini/toast.js":
-/*!*************************************************!*\
-  !*** ../lib/mini/backend/support/mini/toast.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  show(message, duration = 1000) {
-    _JsBridgeCallHandler({
-      method: 'mini.toast.show',
-      args: {
-        message,
-        duration
-      }
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "../lib/mini/backend/support/self.js":
-/*!*******************************************!*\
-  !*** ../lib/mini/backend/support/self.js ***!
-  \*******************************************/
+/***/ "../lib/mini/backend/support.js":
+/*!**************************************!*\
+  !*** ../lib/mini/backend/support.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -639,22 +633,19 @@ let f;
 
 if (true) {
   self.addEventListener = function (type, fn) {
-    typeo == 'message' && (f = fn);
+    type == 'message' && (f = fn);
   };
 
   self.postMessage = function (data) {
-    _JsBridgeCallHandler({
-      method: 'postMessage',
-      args: data,
-    });
+    jsPostMessage2native(data);
   };
 
-  self.__triggerMessageFn = function (data) {
+  self.nativePostMessage2js = function (data) {
     f.call(this, {
       event: 'message',
       data
     });
-  }
+  };
 };
 
 /***/ }),

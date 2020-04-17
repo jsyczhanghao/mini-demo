@@ -403,7 +403,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (() => {
   let f;
 
-  window.JsBridgePostMessage = function(data) {
+  window.nativePostMessage2js = function(data) {
     f.call(this, {
       type: 'message',
       data
