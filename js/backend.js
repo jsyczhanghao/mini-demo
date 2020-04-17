@@ -558,10 +558,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(() => {
-  undefined.global = typeof global == 'undefined' ? undefined : global;
-  undefined.global.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
-})();
+global.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -636,33 +633,29 @@ __webpack_require__.r(__webpack_exports__);
   !*** ../lib/mini/backend/support/self.js ***!
   \*******************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 let f;
 
-if (typeof self == 'undefined') {
-  (() => {
-    this.self = {
-      addEventListener(type, fn) {
-        typeo == 'message' && (f = fn);
-      },
-  
-      postMessage(data) {
-        _JsBridgeCallHandler({
-          method: 'postMessage',
-          args: data,
-        });
-      },
-  
-      __triggerMessageFn(data) {
-        f.call(this, {
-          event: 'message',
-          data
-        });
-      }
-    };
-  })();
-}
+if (true) {
+  self.addEventListener = function (type, fn) {
+    typeo == 'message' && (f = fn);
+  };
+
+  self.postMessage = function (data) {
+    _JsBridgeCallHandler({
+      method: 'postMessage',
+      args: data,
+    });
+  };
+
+  self.__triggerMessageFn = function (data) {
+    f.call(this, {
+      event: 'message',
+      data
+    });
+  }
+};
 
 /***/ }),
 
