@@ -566,9 +566,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let _ = typeof global == 'undefined' ? undefined : global;
+let _;
 
-_.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
+(function() {
+  _ = typeof global == 'undefined' ? this : global;
+  _.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
+})();
 
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
@@ -652,25 +655,27 @@ __webpack_require__.r(__webpack_exports__);
 let f;
 
 if (typeof self == 'undefined') {
-  undefined.self = {
-    addEventListener(type, fn) {
-      typeo == 'message' && (f = fn);
-    },
-
-    postMessage(data) {
-      _JsBridgeCallHandler({
-        method: 'postMessage',
-        args: data,
-      });
-    },
-
-    __triggerMessageFn(data) {
-      f.call(this, {
-        event: 'message',
-        data
-      });
-    }
-  };
+  (function() {
+    this.self = {
+      addEventListener(type, fn) {
+        typeo == 'message' && (f = fn);
+      },
+  
+      postMessage(data) {
+        _JsBridgeCallHandler({
+          method: 'postMessage',
+          args: data,
+        });
+      },
+  
+      __triggerMessageFn(data) {
+        f.call(this, {
+          event: 'message',
+          data
+        });
+      }
+    };
+  })();
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (self);
