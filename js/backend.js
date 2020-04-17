@@ -107,10 +107,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support/index.js");
-
-
-let _;
+/* WEBPACK VAR INJECTION */(function(global) {let _;
 
 global.getApp = () => _;
 
@@ -429,11 +426,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _class__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./class */ "../lib/mini/backend/class.js");
-/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bootstrap */ "../lib/mini/backend/bootstrap.js");
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components */ "../lib/mini/backend/components/index.js");
-/* harmony import */ var app_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! app/app */ "./app.js");
+/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support/index.js");
+/* harmony import */ var _class__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./class */ "../lib/mini/backend/class.js");
+/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bootstrap */ "../lib/mini/backend/bootstrap.js");
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components */ "../lib/mini/backend/components/index.js");
+/* harmony import */ var app_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! app/app */ "./app.js");
+
 
 
 
@@ -442,16 +441,16 @@ __webpack_require__.r(__webpack_exports__);
 
 let currentPageOptions;
 
-Object(_components__WEBPACK_IMPORTED_MODULE_3__["install"])(_class__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Object(_components__WEBPACK_IMPORTED_MODULE_4__["install"])(_class__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
-_messager__WEBPACK_IMPORTED_MODULE_1__["default"]
+_messager__WEBPACK_IMPORTED_MODULE_2__["default"]
   .recevie('PAGE_LOADED', (data, callback) => {
-    callback(currentPageOptions = app_app__WEBPACK_IMPORTED_MODULE_4__["Pages"][data]);
+    callback(currentPageOptions = app_app__WEBPACK_IMPORTED_MODULE_5__["Pages"][data]);
   })
   .recevie('CLIENT_CREATED', (data) => {
-    let context = data.context ? _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(data.context) : null;
+    let context = data.context ? _class__WEBPACK_IMPORTED_MODULE_1__["default"].instance(data.context) : null;
     let componentOptions = !context ? currentPageOptions : context.$components[data.component];
-    new _class__WEBPACK_IMPORTED_MODULE_0__["default"](componentOptions, {
+    new _class__WEBPACK_IMPORTED_MODULE_1__["default"](componentOptions, {
       context,
       props: data.props,
       componentName: data.component,
@@ -459,15 +458,15 @@ _messager__WEBPACK_IMPORTED_MODULE_1__["default"]
     }).$mount();
   })
   .recevie('CLIENT_INVOKE_UPDATE', (data) => {
-    let instance = _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(data.id);
+    let instance = _class__WEBPACK_IMPORTED_MODULE_1__["default"].instance(data.id);
     instance.$setPropsData(data.props);
     instance.$update();
   })
   .recevie('CLIENT_INVOKE', (data) => {
-    _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(data.id).$invoke(data.method, ...data.args);
+    _class__WEBPACK_IMPORTED_MODULE_1__["default"].instance(data.id).$invoke(data.method, ...data.args);
   });
 
-Object(_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"])(app_app__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Object(_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"])(app_app__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 
@@ -560,7 +559,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 if (typeof global == 'undefined') {
-  global = undefined;
+  undefined.global = undefined;
 }
 
 global.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
@@ -578,7 +577,7 @@ global.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
 let f;
 
 if (typeof self == 'undefined') {
-  self = {
+  this.self = {
     addEventListener(type, fn) {
       typeo == 'message' && (f = fn);
     },
