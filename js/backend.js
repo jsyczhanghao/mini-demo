@@ -989,7 +989,10 @@ let __$$component =  {
 
   methods: {
     onClick(e) {
-      console.log(getApp().globalData);
+      //console.log(getApp().globalData);
+      mini.toast.show('hello, world', 2000, (data, next) => {
+        mini.navigator.push('https://weib.com');
+      });
     }
   }
 };;

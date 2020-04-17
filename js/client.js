@@ -415,7 +415,7 @@ __webpack_require__.r(__webpack_exports__);
       f = fn;
     },  
     postMessage(data) {
-      window.flutter_inappwebview.callHandler('postMessage', data);
+      window.flutter_inappwebview.callHandler('jsPostMessage2native', data);
     }
   };
 });
