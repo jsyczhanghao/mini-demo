@@ -107,15 +107,17 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {let _;
+/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support/index.js");
 
-global.getApp = () => _;
+
+let _;
+
+_support__WEBPACK_IMPORTED_MODULE_0__["default"].getApp = () => _;
 
 /* harmony default export */ __webpack_exports__["default"] = ((app) => {
   _ = app;
   _.onLaunch && _.onLaunch();
 });
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -480,8 +482,10 @@ Object(_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"])(app_app__WEBPACK_IMPO
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/messager.js");
+/* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support/index.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (new _messager__WEBPACK_IMPORTED_MODULE_0__["default"](self));
+
+/* harmony default export */ __webpack_exports__["default"] = (new _messager__WEBPACK_IMPORTED_MODULE_0__["default"](_support__WEBPACK_IMPORTED_MODULE_1__["self"]));
 
 /***/ }),
 
@@ -547,56 +551,27 @@ class Query {
 /*!********************************************!*\
   !*** ../lib/mini/backend/support/index.js ***!
   \********************************************/
-/*! no exports provided */
+/*! exports provided: self, global, mini */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./message */ "../lib/mini/backend/support/message.js");
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_message__WEBPACK_IMPORTED_MODULE_0__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "global", function() { return _; });
+/* harmony import */ var _self__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./self */ "../lib/mini/backend/support/self.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "self", function() { return _self__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
 /* harmony import */ var _mini__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mini */ "../lib/mini/backend/support/mini/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "mini", function() { return _mini__WEBPACK_IMPORTED_MODULE_1__["default"]; });
 
 
 
-if (typeof global == 'undefined') {
-  undefined.global = undefined;
-}
 
-global.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
+let _ = typeof global == 'undefined' ? undefined : global;
+
+_.mini = _mini__WEBPACK_IMPORTED_MODULE_1__["default"];
+
+
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "../lib/mini/backend/support/message.js":
-/*!**********************************************!*\
-  !*** ../lib/mini/backend/support/message.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-let f;
-
-if (typeof self == 'undefined') {
-  this.self = {
-    addEventListener(type, fn) {
-      typeo == 'message' && (f = fn);
-    },
-
-    postMessage(data) {
-      _JsBridgeCallHandler({
-        method: 'postMessage',
-        args: data,
-      });
-    },
-
-    __triggerMessageFn(data) {
-      f.call(this, {
-        event: 'message',
-        data
-      });
-    }
-  };
-}
 
 /***/ }),
 
@@ -662,6 +637,43 @@ __webpack_require__.r(__webpack_exports__);
     });
   }
 });
+
+/***/ }),
+
+/***/ "../lib/mini/backend/support/self.js":
+/*!*******************************************!*\
+  !*** ../lib/mini/backend/support/self.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+let f;
+
+if (typeof self == 'undefined') {
+  undefined.self = {
+    addEventListener(type, fn) {
+      typeo == 'message' && (f = fn);
+    },
+
+    postMessage(data) {
+      _JsBridgeCallHandler({
+        method: 'postMessage',
+        args: data,
+      });
+    },
+
+    __triggerMessageFn(data) {
+      f.call(this, {
+        event: 'message',
+        data
+      });
+    }
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (self);
 
 /***/ }),
 
