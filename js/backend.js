@@ -270,6 +270,7 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     onScroll(e) {
+      this.$emit('scroll', e);
     }
   }
 });
@@ -827,6 +828,8 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pages", function() { return Pages; });
 /* harmony import */ var _pages_index_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pages/index/index */ "./pages/index/index.js");
+/* harmony import */ var _pages_user_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/user/index */ "./pages/user/index.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -839,7 +842,8 @@ __webpack_require__.r(__webpack_exports__);
   }
 });
 const Pages = {
-  'pages/index/index': _pages_index_index__WEBPACK_IMPORTED_MODULE_0__["default"]
+  'pages/index/index': _pages_index_index__WEBPACK_IMPORTED_MODULE_0__["default"],
+'pages/user/index': _pages_user_index__WEBPACK_IMPORTED_MODULE_1__["default"]
 };
   
 
@@ -989,10 +993,8 @@ let __$$component =  {
 
   methods: {
     onClick(e) {
-      //console.log(getApp().globalData);
-      mini.toast.show('hello, world', 2000, (data, next) => {
-        mini.navigator.push('https://weib.com');
-      });
+      console.log(getApp().globalData);
+      mini.toast.show('hello, world', 2000);
     }
   }
 };;
@@ -1025,7 +1027,22 @@ module.exports = JSON.parse("{\"usingComponents\":{\"banner\":\"./components/ban
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<page style=\"display: flex; flex-direction: column; height: 100%;\">\n  <scroll-view style=\"height: 100%;\">\n    <scroll-view style=\"height: 300px;\">\n      <scroll-view style=\"height: 200px; background: red;\">\n        <div style=\"height: 1000px;\">\n          内层scroll-view\n        </div>\n      </scroll-view>\n  \n      <div style=\"height: 1000px; background: green;\" @click=\"onClick\">\n        外层\n      </div>\n    </scroll-view>\n  \n    <navigator url=\"https://www.baidu.com\">点击跳转</navigator>\n\n    <banner></banner>\n  </scroll-view>\n</page>");
+/* harmony default export */ __webpack_exports__["default"] = ("<page style=\"display: flex; flex-direction: column; height: 100%;\">\n  <scroll-view style=\"height: 100%;\">\n    <scroll-view style=\"height: 300px;\">\n      <scroll-view style=\"height: 150px; background: red;\">\n        <div style=\"height: 1000px;\">\n          内层scroll-view\n        </div>\n      </scroll-view>\n  \n      <div style=\"height: 1000px; background: green;\" @click=\"onClick\">\n        外层\n      </div>\n    </scroll-view>\n  \n    <navigator url=\"pages/user/index\">点击跳转</navigator>\n\n    <banner></banner>\n  </scroll-view>\n</page>");
+
+/***/ }),
+
+/***/ "./pages/user/index.js":
+/*!*****************************!*\
+  !*** ./pages/user/index.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  
+});
 
 /***/ })
 
