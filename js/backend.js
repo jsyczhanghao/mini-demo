@@ -344,11 +344,12 @@ __webpack_require__.r(__webpack_exports__);
   template: _index_paml__WEBPACK_IMPORTED_MODULE_0__["default"],
   style: raw_loader_index_pass__WEBPACK_IMPORTED_MODULE_1__["default"],
   props: {
-    url: null
+    url: null,
   },
   methods: {
     onClick() {
       this.url && mini.navigator.push(this.url);
+      this.$emit('click');
     }
   }
 });
@@ -600,6 +601,7 @@ _messager__WEBPACK_IMPORTED_MODULE_3__["default"]
     new _class__WEBPACK_IMPORTED_MODULE_2__["default"](componentOptions, {
       context,
       props: data.props,
+      events: data.events,
       componentName: data.component,
       componentId: data.id
     }).$mount();
@@ -607,6 +609,7 @@ _messager__WEBPACK_IMPORTED_MODULE_3__["default"]
   .recevie('CLIENT_INVOKE_UPDATE', (data) => {
     let instance = _class__WEBPACK_IMPORTED_MODULE_2__["default"].instance(data.id);
     instance.$setPropsData(data.props);
+    instance.$setEvents(data.events);
     instance.$update();
   })
   .recevie('CLIENT_INVOKE', (data) => {
@@ -1028,6 +1031,7 @@ let __$$component =  {
 
   methods: {
     showToast(e) {
+      console.log(e);
       mini.toast.show(getApp().globalData, 2000);
     }
   }
@@ -1061,7 +1065,7 @@ module.exports = JSON.parse("{\"usingComponents\":{\"banner\":\"./components/ban
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<page style=\"display: flex; flex-direction: column; height: 100%;\">\n  <scroll-view style=\"height: 100%;\">\n    <scroll-view style=\"height: 300px;\">\n      <scroll-view style=\"height: 150px; background: red;\">\n        <div style=\"height: 1000px;\">\n          内层scroll-view\n        </div>\n      </scroll-view>\n  \n      <div style=\"height: 1000px; background: green;\">\n        外层\n      </div>\n    </scroll-view>\n\n    <div class=\"center\">\n      <navigator url=\"pages/user/index\">跳转user</navigator>\n      <navigator @click=\"showToast\">toast</navigator>\n    </div>\n    \n    <banner></banner>\n  </scroll-view>\n</page>");
+/* harmony default export */ __webpack_exports__["default"] = ("<page style=\"display: flex; flex-direction: column; height: 100%;\">\n  <scroll-view style=\"height: 100%;\">\n    <scroll-view style=\"height: 300px;\">\n      <scroll-view style=\"height: 150px; background: red;\">\n        <div style=\"height: 1000px;\">\n          内层scroll-view\n        </div>\n      </scroll-view>\n  \n      <div style=\"height: 1000px; background: green;\">\n        外层\n      </div>\n    </scroll-view>\n\n    <div class=\"center\">\n      <navigator url=\"pages/user/index\">跳转user</navigator>\n      <div @click=\"showToast\">弹出toast</div>\n    </div>\n    \n    <banner></banner>\n  </scroll-view>\n</page>");
 
 /***/ }),
 
