@@ -126,6 +126,55 @@ let INSTANCES = {};
 
 /***/ }),
 
+/***/ "../lib/mini/client/api/index.js":
+/*!***************************************!*\
+  !*** ../lib/mini/client/api/index.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _class__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../class */ "../lib/mini/client/class.js");
+
+
+const success = (data) => {
+  return {
+    status: 1,
+    data
+  };
+};
+
+const error = (err) => {
+  return {
+    status: 0,
+    err
+  };
+};
+
+const api = {
+  'dom.boundingClientRect': ({id, selector}) => {
+    let el = _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(id).$el.querySelector(selector);
+    return el ? success(el.getBoundingClientRect()) : error(`no match dom in [${selector}]~`);
+  },
+
+  'dom.screen': () => success({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  }),
+
+  'navigator.push': (url) => {
+    location.href = '?' + url;
+    return success();
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ((method, args) => {
+  return Promise.resolve(method in api ? api[method](args) : error(`api [${method}] is not exists~`));
+});
+
+/***/ }),
+
 /***/ "../lib/mini/client/class.js":
 /*!***********************************!*\
   !*** ../lib/mini/client/class.js ***!
@@ -155,7 +204,10 @@ const $update = pizza__WEBPACK_IMPORTED_MODULE_1__["helper"].util.throttle(funct
 
 class MiniClientPizza extends _base__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(componentOptions, options = {}) {
-    super(componentOptions, options);
+    super(componentOptions, {
+      ...options,
+      componentId: Math.random()
+    });
     _messager__WEBPACK_IMPORTED_MODULE_2__["default"].send('CLIENT_CREATED', {
       props: this.$propsData,
       context: this.$context ? this.$context.$componentId : null,
@@ -252,32 +304,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messager */ "../lib/mini/client/messager.js");
 /* harmony import */ var style_loader_css_loader_app_app_pass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! style-loader!css-loader!app/app.pass */ "../node_modules/style-loader/dist/cjs.js!../node_modules/css-loader/dist/cjs.js!./app.pass");
 /* harmony import */ var style_loader_css_loader_app_app_pass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(style_loader_css_loader_app_app_pass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./query */ "../lib/mini/client/query.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./api */ "../lib/mini/client/api/index.js");
 
 
 
 
 
-let page = 'pages/index/index';
+const query = location.search.substr(1);
+let [page, params] = query.split('?');
+let rootMounted = false;
+
+if (!page) {
+  page = 'pages/index/index';
+}
 
 _messager__WEBPACK_IMPORTED_MODULE_1__["default"]
-  .recevie('UPDATE', (data) => {
-    let instance = _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(data.id);
-    instance.$render = () => data.vnode;
+  .recevie('UPDATE', ({id, vnode}) => {
+    let instance = _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(id);
+    instance.$render = () => vnode;
     instance.$forceUpdate();
-  }).recevie('MOUNT', (data) => {
-    let instance = _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(data.id);
-    instance.$render = () => data.vnode;
-    instance.$invokeMount(data.id == page ? document.getElementById('app') : void 0);
-  }).send('PAGE_LOADED', page, (data) => {
-    new _class__WEBPACK_IMPORTED_MODULE_0__["default"](data, {
-      componentId: page
-    });
-  });
+  }).recevie('MOUNT', ({id, vnode}) => {
+    let instance = _class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(id);
+    instance.$render = () => vnode;
 
-_messager__WEBPACK_IMPORTED_MODULE_1__["default"].recevie('QUERY', (data, callback) => {
-  callback(_query__WEBPACK_IMPORTED_MODULE_3__["default"].exec(_class__WEBPACK_IMPORTED_MODULE_0__["default"].instance(data.id), data));
-});
+    if (rootMounted) {
+      instance.$invokeMount();
+    } else {
+      rootMounted = true;
+      instance.$invokeMount(document.getElementById('app'));
+    }
+  }).recevie('API_CALL', ({
+    method,
+    args
+  }, callback) => {
+    Object(_api__WEBPACK_IMPORTED_MODULE_3__["default"])(method, args).then(callback);
+  })
+  .send('PAGE_LOADED', page, (data) => {
+    new _class__WEBPACK_IMPORTED_MODULE_0__["default"](data);
+  });
 
 /***/ }),
 
@@ -295,57 +359,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (new _messager__WEBPACK_IMPORTED_MODULE_0__["default"](Object(worker__WEBPACK_IMPORTED_MODULE_1__["default"])()));
-
-/***/ }),
-
-/***/ "../lib/mini/client/query.js":
-/*!***********************************!*\
-  !*** ../lib/mini/client/query.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  getBoundingClientRect(el) {
-    return el.getBoundingClientRect();
-  },
-
-  screen() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-  },
-
-  exec(instance, data) {
-    let {method, args, selector, selectorAll} = data;
-
-    if (!method in this) return this.error();
-
-    let el = instance.$el, res;
-
-    if (selector) {
-      res = this[method](el.querySelector(selector));
-    } else if (selectorAll) {
-      res = Array.from(el.querySelectorAll(selectorAll)).map((el) => {
-        return this[method](el);
-      })
-    } else {
-      res = this[method](el);
-    }
-
-    return {
-      status: 1,
-      data: res,
-    };
-  },
-
-  error() {
-    return {status: 0};
-  }
-});
 
 /***/ }),
 

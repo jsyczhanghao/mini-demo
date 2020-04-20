@@ -98,6 +98,150 @@
 
 /***/ }),
 
+/***/ "../lib/mini/backend/api/_register.js":
+/*!********************************************!*\
+  !*** ../lib/mini/backend/api/_register.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/backend/messager.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ((method, argsFn) => {
+  return (...args) => {
+    return new Promise((resolve, reject) => {
+      _messager__WEBPACK_IMPORTED_MODULE_0__["default"].send('API_CALL', {
+        method,
+        args: argsFn ? argsFn(...args) : args[0],
+      }, ({
+        status,
+        data,
+        err
+      }) => !err ? resolve(data) : reject(err));
+    });
+  };
+});
+
+/***/ }),
+
+/***/ "../lib/mini/backend/api/dom.js":
+/*!**************************************!*\
+  !*** ../lib/mini/backend/api/dom.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_register */ "../lib/mini/backend/api/_register.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  boundingClientRect: Object(_register__WEBPACK_IMPORTED_MODULE_0__["default"])('dom.boundingClientRect', (context, selector) => {
+    return {
+      id: context.$componentId,
+      selector
+    }
+  }),
+
+  screen: Object(_register__WEBPACK_IMPORTED_MODULE_0__["default"])('dom.screen'),
+});
+
+/***/ }),
+
+/***/ "../lib/mini/backend/api/index.js":
+/*!****************************************!*\
+  !*** ../lib/mini/backend/api/index.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _navigator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigator */ "../lib/mini/backend/api/navigator.js");
+/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toast */ "../lib/mini/backend/api/toast.js");
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dom */ "../lib/mini/backend/api/dom.js");
+/* harmony import */ var _system__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./system */ "../lib/mini/backend/api/system.js");
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (global.mini = {
+  navigator: _navigator__WEBPACK_IMPORTED_MODULE_0__["default"],
+  toast: _toast__WEBPACK_IMPORTED_MODULE_1__["default"],
+  dom: _dom__WEBPACK_IMPORTED_MODULE_2__["default"],
+  system: _system__WEBPACK_IMPORTED_MODULE_3__["default"],
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../lib/mini/backend/api/navigator.js":
+/*!********************************************!*\
+  !*** ../lib/mini/backend/api/navigator.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_register */ "../lib/mini/backend/api/_register.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  push: Object(_register__WEBPACK_IMPORTED_MODULE_0__["default"])('navigator.push'), 
+
+  back() {
+
+  }
+});
+
+/***/ }),
+
+/***/ "../lib/mini/backend/api/system.js":
+/*!*****************************************!*\
+  !*** ../lib/mini/backend/api/system.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_register */ "../lib/mini/backend/api/_register.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  config: Object(_register__WEBPACK_IMPORTED_MODULE_0__["default"])('system.config')
+});
+
+/***/ }),
+
+/***/ "../lib/mini/backend/api/toast.js":
+/*!****************************************!*\
+  !*** ../lib/mini/backend/api/toast.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_register */ "../lib/mini/backend/api/_register.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  show: Object(_register__WEBPACK_IMPORTED_MODULE_0__["default"])('toast.show', (message, duration = 1000) => {
+    return {
+      message, duration
+    };
+  })
+});
+
+/***/ }),
+
 /***/ "../lib/mini/backend/bootstrap.js":
 /*!****************************************!*\
   !*** ../lib/mini/backend/bootstrap.js ***!
@@ -131,9 +275,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../base */ "../lib/mini/base.js");
 /* harmony import */ var pizza__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pizza */ "../../pizzajs/dist/pizza.js");
 /* harmony import */ var pizza__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(pizza__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _query__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./query */ "../lib/mini/backend/query.js");
-/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
-
+/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
 
 
 
@@ -141,18 +283,10 @@ __webpack_require__.r(__webpack_exports__);
 class MiniPizza extends _base__WEBPACK_IMPORTED_MODULE_0__["default"] {
   _patch(vnode) {
     this.$vnode = vnode;
-    _messager__WEBPACK_IMPORTED_MODULE_3__["default"].send(this.$mounted ? 'UPDATE' : 'MOUNT', {
+    _messager__WEBPACK_IMPORTED_MODULE_2__["default"].send(this.$mounted ? 'UPDATE' : 'MOUNT', {
       id: this.$componentId,
       vnode,
     });
-  }
-
-  $query() {
-    if (!this.$queryInstance) {
-      this.$queryInstance = new _query__WEBPACK_IMPORTED_MODULE_2__["default"](this);
-    }
-    
-    return this.$queryInstance;
   }
 }
 
@@ -202,10 +336,13 @@ const install = (Pizza) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_paml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.paml */ "../lib/mini/backend/components/navigator/index.paml");
+/* harmony import */ var raw_loader_index_pass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./index.pass */ "../node_modules/raw-loader/dist/cjs.js!../lib/mini/backend/components/navigator/index.pass");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   template: _index_paml__WEBPACK_IMPORTED_MODULE_0__["default"],
+  style: raw_loader_index_pass__WEBPACK_IMPORTED_MODULE_1__["default"],
   props: {
     url: null
   },
@@ -366,9 +503,14 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.touch = e.touches[0];
-      this.$query().selectAll('.swiper, .swiper-inner').getBoundingClientRect().then((data) => {
-        this.perScreenTranslate = data[0][this.wh];
-        this.count = Math.ceil(data[1][this.wh] / data[0][this.wh]);
+      
+      Promise.all([
+        mini.dom.boundingClientRect(this, '.swiper'),
+        mini.dom.boundingClientRect(this, '.swiper-inner')
+      ]).then((res) => {
+        let [a, b] = res;
+        this.perScreenTranslate = a[this.wh];
+        this.count = Math.ceil(b[this.wh] / a[this.wh]);
       });
     },
 
@@ -418,82 +560,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../lib/mini/backend/global/index.js":
-/*!*******************************************!*\
-  !*** ../lib/mini/backend/global/index.js ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _navigator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigator */ "../lib/mini/backend/global/navigator.js");
-/* harmony import */ var _toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toast */ "../lib/mini/backend/global/toast.js");
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = (global.mini = {
-  navigator: _navigator__WEBPACK_IMPORTED_MODULE_0__["default"],
-  toast: _toast__WEBPACK_IMPORTED_MODULE_1__["default"]
-});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "../lib/mini/backend/global/navigator.js":
-/*!***********************************************!*\
-  !*** ../lib/mini/backend/global/navigator.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/backend/messager.js");
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  push(url) {
-    _messager__WEBPACK_IMPORTED_MODULE_0__["default"].send('API_CALL', {
-      method: 'navigator.push',
-      arguments: {
-        url
-      }
-    });
-  },
-
-  back() {
-
-  }
-});
-
-/***/ }),
-
-/***/ "../lib/mini/backend/global/toast.js":
-/*!*******************************************!*\
-  !*** ../lib/mini/backend/global/toast.js ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/backend/messager.js");
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  show(message, duration = 1000) {
-    _messager__WEBPACK_IMPORTED_MODULE_0__["default"].send('API_CALL', {
-      method: 'toast.show',
-      arguments: {
-        message, duration
-      }
-    });
-  }
-});
-
-/***/ }),
-
 /***/ "../lib/mini/backend/index.js":
 /*!************************************!*\
   !*** ../lib/mini/backend/index.js ***!
@@ -505,7 +571,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./support */ "../lib/mini/backend/support.js");
 /* harmony import */ var _support__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_support__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./global */ "../lib/mini/backend/global/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api */ "../lib/mini/backend/api/index.js");
 /* harmony import */ var _class__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./class */ "../lib/mini/backend/class.js");
 /* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./bootstrap */ "../lib/mini/backend/bootstrap.js");
@@ -526,6 +592,7 @@ Object(_components__WEBPACK_IMPORTED_MODULE_5__["install"])(_class__WEBPACK_IMPO
 _messager__WEBPACK_IMPORTED_MODULE_3__["default"]
   .recevie('PAGE_LOADED', (data, callback) => {
     callback(currentPageOptions = app_app__WEBPACK_IMPORTED_MODULE_6__["Pages"][data]);
+    _api__WEBPACK_IMPORTED_MODULE_1__["default"].system.config(app_app__WEBPACK_IMPORTED_MODULE_6__["Pages"][data].configs);
   })
   .recevie('CLIENT_CREATED', (data) => {
     let context = data.context ? _class__WEBPACK_IMPORTED_MODULE_2__["default"].instance(data.context) : null;
@@ -562,64 +629,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messager */ "../lib/mini/messager.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (new _messager__WEBPACK_IMPORTED_MODULE_0__["default"](self));
-
-/***/ }),
-
-/***/ "../lib/mini/backend/query.js":
-/*!************************************!*\
-  !*** ../lib/mini/backend/query.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Query; });
-/* harmony import */ var _messager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./messager */ "../lib/mini/backend/messager.js");
-
-
-class Query {
-  constructor(context) {
-    this.context = context;
-    this.selector = null;
-    this.selectorAll = null;
-  }
-
-  select(selector) {
-    this.selector = selector;
-    this.selectorAll = null;
-    return this;
-  }
-
-  selectAll(selector) {
-    this.selector = null;
-    this.selectorAll = selector;
-    return this;
-  }
-
-  getBoundingClientRect() {
-    return this._invoke('getBoundingClientRect');
-  }
-
-  screen() {
-    this.selectorAll = this.selector = null;
-    return this._invoke('screen');
-  }
-
-  _invoke(method, args) {
-    return new Promise((resolve, reject) => {
-      _messager__WEBPACK_IMPORTED_MODULE_0__["default"].send('QUERY', {
-        id: this.context.$componentId,
-        selector: this.selector,
-        selectorAll: this.selectorAll,
-        method: method,
-        args
-      }, (data) => {
-        data.status == 1 ? resolve(data.data): reject();
-      });
-    });
-  }
-}
 
 /***/ }),
 
@@ -721,6 +730,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "../node_modules/raw-loader/dist/cjs.js!../lib/mini/backend/components/navigator/index.pass":
+/*!**************************************************************************************************!*\
+  !*** ../node_modules/raw-loader/dist/cjs.js!../lib/mini/backend/components/navigator/index.pass ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (":host {\n  display: inline-block;\n}");
+
+/***/ }),
+
 /***/ "../node_modules/raw-loader/dist/cjs.js!../lib/mini/backend/components/scroll-view/index.pass":
 /*!****************************************************************************************************!*\
   !*** ../node_modules/raw-loader/dist/cjs.js!../lib/mini/backend/components/scroll-view/index.pass ***!
@@ -782,7 +804,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("pizza-page {\n  font-size: 24px;\n  color: blue;\n}\n\npizza-banner {\n  flex: 1;\n}");
+/* harmony default export */ __webpack_exports__["default"] = ("pizza-banner {\n  flex: 1;\n}\n\n.center {\n  display: flex;\n  align-items: center;\n  height: 50px;\n  justify-content: space-around;\n}");
+
+/***/ }),
+
+/***/ "../node_modules/raw-loader/dist/cjs.js!./pages/user/index.pass":
+/*!**********************************************************************!*\
+  !*** ../node_modules/raw-loader/dist/cjs.js!./pages/user/index.pass ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("pizza-div {\n  font-size: 28px;\n}");
 
 /***/ }),
 
@@ -956,7 +991,7 @@ module.exports = JSON.parse("{\"component\":true}");
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\n  <div>水平滚动</div>\n  <swiper style=\"height: 200px\" direction=\"horizontal\">\n    <swiper-item v-for=\"images\">\n      <img :src=\"$item\" style=\"width: 100vw; height: 200px;\" />\n    </swiper-item>\n  </swiper>\n\n  <div>垂直滚动</div>\n  <div @touchstart.prevent=\"onTouchStart\">\n    <swiper style=\"height: 200px\" direction=\"vertical\">\n      <swiper-item v-for=\"images\">\n        <img :src=\"$item\" style=\"width: 100vw; height: 200px;\" />\n      </swiper-item>\n    </swiper>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<swiper style=\"height: 200px\" direction=\"horizontal\">\n  <swiper-item v-for=\"images\">\n    <img :src=\"$item\" style=\"width: 100vw; height: 200px;\" />\n  </swiper-item>\n</swiper>");
 
 /***/ }),
 
@@ -992,9 +1027,8 @@ let __$$component =  {
   },
 
   methods: {
-    onClick(e) {
-      console.log(getApp().globalData);
-      mini.toast.show('hello, world', 2000);
+    showToast(e) {
+      mini.toast.show(getApp().globalData, 2000);
     }
   }
 };;
@@ -1027,7 +1061,7 @@ module.exports = JSON.parse("{\"usingComponents\":{\"banner\":\"./components/ban
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<page style=\"display: flex; flex-direction: column; height: 100%;\">\n  <scroll-view style=\"height: 100%;\">\n    <scroll-view style=\"height: 300px;\">\n      <scroll-view style=\"height: 150px; background: red;\">\n        <div style=\"height: 1000px;\">\n          内层scroll-view\n        </div>\n      </scroll-view>\n  \n      <div style=\"height: 1000px; background: green;\" @click=\"onClick\">\n        外层\n      </div>\n    </scroll-view>\n  \n    <navigator url=\"pages/user/index\">点击跳转</navigator>\n\n    <banner></banner>\n  </scroll-view>\n</page>");
+/* harmony default export */ __webpack_exports__["default"] = ("<page style=\"display: flex; flex-direction: column; height: 100%;\">\n  <scroll-view style=\"height: 100%;\">\n    <scroll-view style=\"height: 300px;\">\n      <scroll-view style=\"height: 150px; background: red;\">\n        <div style=\"height: 1000px;\">\n          内层scroll-view\n        </div>\n      </scroll-view>\n  \n      <div style=\"height: 1000px; background: green;\">\n        外层\n      </div>\n    </scroll-view>\n\n    <div class=\"center\">\n      <navigator url=\"pages/user/index\">跳转user</navigator>\n      <navigator @click=\"showToast\">toast</navigator>\n    </div>\n    \n    <banner></banner>\n  </scroll-view>\n</page>");
 
 /***/ }),
 
@@ -1040,9 +1074,49 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony import */ var _index_paml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.paml */ "./pages/user/index.paml");
+/* harmony import */ var _index_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.json */ "./pages/user/index.json");
+var _index_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./index.json */ "./pages/user/index.json", 1);
+/* harmony import */ var raw_loader_index_pass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! raw-loader!./index.pass */ "../node_modules/raw-loader/dist/cjs.js!./pages/user/index.pass");
+
+
+
+
   
-});
+
+let __$$component =  {
+  
+};;
+__$$component.template = _index_paml__WEBPACK_IMPORTED_MODULE_0__["default"];
+__$$component.style = typeof raw_loader_index_pass__WEBPACK_IMPORTED_MODULE_2__["default"] == 'undefined' ? null : raw_loader_index_pass__WEBPACK_IMPORTED_MODULE_2__["default"];
+__$$component.components = {};
+__$$component.configs = _index_json__WEBPACK_IMPORTED_MODULE_1__;
+/* harmony default export */ __webpack_exports__["default"] = (__$$component);
+  
+
+/***/ }),
+
+/***/ "./pages/user/index.json":
+/*!*******************************!*\
+  !*** ./pages/user/index.json ***!
+  \*******************************/
+/*! exports provided: navigationBarTitleText, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"navigationBarTitleText\":\"用户中心\"}");
+
+/***/ }),
+
+/***/ "./pages/user/index.paml":
+/*!*******************************!*\
+  !*** ./pages/user/index.paml ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<page>\n  <div>用户中心</div>\n</page>");
 
 /***/ })
 
