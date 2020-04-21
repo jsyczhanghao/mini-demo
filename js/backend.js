@@ -1120,7 +1120,7 @@ module.exports = JSON.parse("{\"navigationBarTitleText\":\"用户中心\"}");
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<page>\n  <div>用户中心</div>\n</page>");
+/* harmony default export */ __webpack_exports__["default"] = ("<page>\n  <div>用户中心</div>\n  <navigator url=\"pages/user/index\">前进到index页面，不是后退</navigator>\n</page>");
 
 /***/ })
 
