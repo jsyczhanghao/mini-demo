@@ -1,0 +1,24 @@
+{
+  "name": "mini-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pizza",
+    "build": "pizza --production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsyczhanghao/mini-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsyczhanghao/mini-demo/issues"
+  },
+  "homepage": "https://github.com/jsyczhanghao/mini-demo#readme",
+  "dependencies": {
+    "pizza": "git+https://github.com/jsyczhanghao/pizza.git"
+  }
+}

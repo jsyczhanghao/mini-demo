@@ -1,0 +1,23 @@
+<page style="display: flex; flex-direction: column; height: 100%;">
+  <scroll-view style="height: 100%;">
+    <scroll-view style="height: 300px;">
+      <scroll-view style="height: 150px; background: red;">
+        <div style="height: 1000px;">
+          内层scroll-view
+        </div>
+      </scroll-view>
+  
+      <div style="height: 1000px; background: green;">
+        外层
+      </div>
+    </scroll-view>
+
+    <div class="center">
+      <navigator url="pages/user/index">跳转user</navigator>
+      <navigator @click="showToast">啦啦</navigator>
+      <div @click="showToast">弹出toast</div>
+    </div>
+    
+    <banner></banner>
+  </scroll-view>
+</page>

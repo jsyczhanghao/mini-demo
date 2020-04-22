@@ -1,0 +1,4 @@
+<page>
+  <div>用户中心</div>
+  <navigator url="pages/index/index">前进到index页面，不是后退</navigator>
+</page>

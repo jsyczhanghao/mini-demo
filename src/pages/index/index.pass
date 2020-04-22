@@ -1,0 +1,10 @@
+banner {
+  flex: 1;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  justify-content: space-around;
+}
